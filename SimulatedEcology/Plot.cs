@@ -11,8 +11,6 @@
 		public Plot(int x, int y)
 		{
 			Coordinate = new Coordinate(x, y);
-			Mammal = Mammal.None;
-			Tree = null;
 		}
 	}
 }
