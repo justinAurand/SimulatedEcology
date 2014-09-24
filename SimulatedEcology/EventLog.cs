@@ -127,6 +127,7 @@
 						output.Append(String.Format(EventDescriptions.BearsTrapped, bearsTrapped) + Environment.NewLine);
 					return output.ToString();
 				}
+
 				return "No events to report." + Environment.NewLine;
 			}
 		}

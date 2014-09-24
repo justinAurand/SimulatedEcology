@@ -2,8 +2,8 @@
 {
 	using System;
 
-    public static class Chronos
-    {
+	public static class Chronos
+	{
 		public static void Main()
 		{
 			var forest = new Forest();
