@@ -6,6 +6,7 @@
 
 	public static class Events
 	{
+		#region Public
 		public static void EvolveTrees(List<Plot> plots, Random random, EventLog log)
 		{
 			List<Plot> treePlots = plots.Where(plot => plot.Tree != null).ToList();
@@ -188,7 +189,9 @@
 					return;
 			}
 		}
+		#endregion
 
+		#region Private
 		private static Func<Plot, Plot, bool> Adjacent = (plot, elementPlot) =>
 			plot.Coordinate.X >= elementPlot.Coordinate.X - 1 && plot.Coordinate.X <= elementPlot.Coordinate.X + 1 &&
 				plot.Coordinate.Y >= elementPlot.Coordinate.Y - 1 && plot.Coordinate.Y <= elementPlot.Coordinate.Y + 1 &&
@@ -205,5 +208,6 @@
 			nextPlot.Mammal = mammal;
 			currentPlot = nextPlot;
 		}
+		#endregion
 	}
 }

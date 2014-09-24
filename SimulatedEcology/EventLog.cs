@@ -18,6 +18,7 @@
 		public int LumberHarvestedThisYear { get { return annualLog.lumberHarvested; } }
 		public int MawlingsThisYear { get { return annualLog.lumberjacksMawled; } }
 
+		#region Public
 		public void Clear(int ageInMonths)
 		{
 			monthlyLog = new Log();
@@ -88,6 +89,7 @@
 
 			File.AppendAllText(filePath, output.ToString());
 		}
+		#endregion
 
 		private class Log
 		{
