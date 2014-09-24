@@ -22,8 +22,6 @@
 				if (monthsProcessed % 12 == 0)
 					Console.ReadKey();
 			}
-
-			Console.ReadKey();
 		}
 	}
 }
