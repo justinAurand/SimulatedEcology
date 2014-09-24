@@ -15,9 +15,7 @@
 			{
 				if (ageInMonths >= 120)
 					return TreeType.Elder;
-				if (ageInMonths >= 12)
-					return TreeType.Tree;
-				return TreeType.Sapling;
+				return ageInMonths >= 12 ? TreeType.Tree : TreeType.Sapling;
 			}
 		}
 
