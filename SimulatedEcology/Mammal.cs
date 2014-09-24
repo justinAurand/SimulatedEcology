@@ -2,8 +2,8 @@
 {
 	public enum Mammal
 	{
+		None,
 		Bear,
-		Lumberjack,
-		None
+		Lumberjack
 	}
 }
