@@ -26,7 +26,7 @@
 						break;
 				}
 
-				List<Plot> availablePlots = plots.Where(plot => plot.Tree == null && plot.Mammal == Mammal.None && Adjacent(plot, treePlot)).ToList();
+				List<Plot> availablePlots = plots.Where(plot => plot.Tree == null && plot.Mammal == Mammal.None && adjacent(plot, treePlot)).ToList();
 				if (!availablePlots.Any())
 					continue;
 				int randomIndex = random.Next(availablePlots.Count);
@@ -101,10 +101,10 @@
 			{
 				Plot currentPlot = bearPlot;
 
-				int moves = 5;
+				const int moves = 5;
 				for (int i = 0; i < moves; i++)
 				{
-					List<Plot> availablePlots = plots.Where(plot => Adjacent(plot, currentPlot)).ToList();
+					List<Plot> availablePlots = plots.Where(plot => adjacent(plot, currentPlot)).ToList();
 					int randomIndex = random.Next(availablePlots.Count);
 					if (availablePlots[randomIndex].Mammal == Mammal.Bear)
 					{
@@ -133,10 +133,10 @@
 			{
 				Plot currentPlot = lumberjackPlot;
 
-				int moves = 3;
+				const int moves = 3;
 				for (int i = 0; i < moves; i++)
 				{
-					List<Plot> availablePlots = plots.Where(plot => Adjacent(plot, currentPlot)).ToList();
+					List<Plot> availablePlots = plots.Where(plot => adjacent(plot, currentPlot)).ToList();
 					int randomIndex = random.Next(availablePlots.Count);
 					if (availablePlots[randomIndex].Mammal == Mammal.Lumberjack)
 					{
@@ -192,7 +192,7 @@
 		#endregion
 
 		#region Private
-		private static Func<Plot, Plot, bool> Adjacent = (plot, elementPlot) =>
+		private static readonly Func<Plot, Plot, bool> adjacent = (plot, elementPlot) =>
 			plot.Coordinate.X >= elementPlot.Coordinate.X - 1 && plot.Coordinate.X <= elementPlot.Coordinate.X + 1 &&
 				plot.Coordinate.Y >= elementPlot.Coordinate.Y - 1 && plot.Coordinate.Y <= elementPlot.Coordinate.Y + 1 &&
 				!plot.Coordinate.Equals(elementPlot.Coordinate);
