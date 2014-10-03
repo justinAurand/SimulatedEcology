@@ -47,15 +47,9 @@
 				else if (plot.Tree == null && plot.Mammal == Mammal.None)
 					output.Append(" ");
 				else if (plot.Mammal == Mammal.Lumberjack)
-					if (plot.Tree == null)
-						output.Append("L");
-					else
-						output.Append("x");
+					output.Append(plot.Tree == null ? "L" : "x");
 				else
-					if (plot.Tree == null)
-						output.Append("B");
-					else
-						output.Append("X");
+					output.Append(plot.Tree == null ? "B" : "X");
 
 				if ((i + 1) % size == 0)
 					output.Append(Environment.NewLine);
@@ -94,7 +88,7 @@
 			Console.WriteLine("Forest size:");
 			string line = Console.ReadLine();
 
-			int forestSize = 0;
+			int forestSize;
 			if (!Int32.TryParse(line, out forestSize) || forestSize < 1)
 			{
 				Console.WriteLine("You failed to enter a positive number. PEACE!");
