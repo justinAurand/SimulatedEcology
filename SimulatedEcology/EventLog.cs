@@ -15,8 +15,8 @@
 			File.WriteAllText(filePath, string.Empty);
 		}
 
-		public int LumberHarvestedThisYear { get { return annualLog.lumberHarvested; } }
-		public int MawlingsThisYear { get { return annualLog.lumberjacksMawled; } }
+		public int LumberHarvestedThisYear { get { return annualLog.LumberHarvested; } }
+		public int MawlingsThisYear { get { return annualLog.LumberjacksMawled; } }
 
 		#region Public
 		public void Clear(int ageInMonths)
@@ -27,64 +27,64 @@
 		}
 		public void ElderTreeHarvested()
 		{
-			monthlyLog.lumberHarvested += 2;
-			annualLog.lumberHarvested += 2;
+			monthlyLog.LumberHarvested += 2;
+			annualLog.LumberHarvested += 2;
 		}
 		public void BearProduced()
 		{
-			monthlyLog.bearsProduced++;
-			annualLog.bearsProduced++;
+			monthlyLog.BearsProduced++;
+			annualLog.BearsProduced++;
 		}
 		public void BearTrapped()
 		{
-			monthlyLog.bearsTrapped++;
-			annualLog.bearsTrapped++;
+			monthlyLog.BearsTrapped++;
+			annualLog.BearsTrapped++;
 		}
 		public void LumberjackFired()
 		{
-			monthlyLog.lumberjacksFired++;
-			annualLog.lumberjacksFired++;
+			monthlyLog.LumberjacksFired++;
+			annualLog.LumberjacksFired++;
 		}
 		public void LumberjackHired()
 		{
-			monthlyLog.lumberjacksHired++;
-			annualLog.lumberjacksHired++;
+			monthlyLog.LumberjacksHired++;
+			annualLog.LumberjacksHired++;
 		}
 		public void LumberjackMawled()
 		{
-			monthlyLog.lumberjacksMawled++;
-			annualLog.lumberjacksMawled++;
+			monthlyLog.LumberjacksMawled++;
+			annualLog.LumberjacksMawled++;
 		}
 		public void SaplingMatured()
 		{
-			monthlyLog.saplingsMatured++;
-			annualLog.saplingsMatured++;
+			monthlyLog.SaplingsMatured++;
+			annualLog.SaplingsMatured++;
 		}
 		public void SaplingSpawned()
 		{
-			monthlyLog.saplingsSpawned++;
-			annualLog.saplingsSpawned++;
+			monthlyLog.SaplingsSpawned++;
+			annualLog.SaplingsSpawned++;
 		}
 		public void TreeHarvested()
 		{
-			monthlyLog.lumberHarvested++;
-			annualLog.lumberHarvested++;
+			monthlyLog.LumberHarvested++;
+			annualLog.LumberHarvested++;
 		}
 		public void TreeMatured()
 		{
-			monthlyLog.treesMatured++;
-			annualLog.treesMatured++;
+			monthlyLog.TreesMatured++;
+			annualLog.TreesMatured++;
 		}
 		public void WriteToFile(int ageInMonths)
 		{
 			var output = new StringBuilder();
 			output.Append(String.Format("Month [{0}]:{1}", ageInMonths, Environment.NewLine));
-			output.Append(monthlyLog.ToString());
+			output.Append(monthlyLog);
 
 			if (ageInMonths % 12 == 0)
 			{
 				output.Append(String.Format("Year [{0}]:{1}", ageInMonths / 12, Environment.NewLine));
-				output.Append(annualLog.ToString());
+				output.Append(annualLog);
 			}
 
 			File.AppendAllText(filePath, output.ToString());
@@ -93,44 +93,42 @@
 
 		private class Log
 		{
-			internal int bearsTrapped { get; set; }
-			internal int bearsProduced { get; set; }
-			internal int lumberHarvested { get; set; }
-			internal int lumberjacksFired { get; set; }
-			internal int lumberjacksHired { get; set; }
-			internal int lumberjacksMawled { get; set; }
-			internal int saplingsMatured { get; set; }
-			internal int saplingsSpawned { get; set; }
-			internal int treesMatured { get; set; }
+			internal int BearsTrapped { get; set; }
+			internal int BearsProduced { get; set; }
+			internal int LumberHarvested { get; set; }
+			internal int LumberjacksFired { get; set; }
+			internal int LumberjacksHired { get; set; }
+			internal int LumberjacksMawled { get; set; }
+			internal int SaplingsMatured { get; set; }
+			internal int SaplingsSpawned { get; set; }
+			internal int TreesMatured { get; set; }
 
 			public override string ToString()
 			{
-				if (saplingsSpawned > 0 || saplingsMatured > 0 || treesMatured > 0 || lumberHarvested > 0 || lumberjacksMawled > 0 ||
-					lumberjacksHired > 0 || lumberjacksFired > 0 || bearsProduced > 0 || bearsTrapped > 0)
-				{
-					var output = new StringBuilder();
-					if (saplingsSpawned > 0)
-						output.Append(String.Format(EventDescriptions.SapplingsSpawned, saplingsSpawned) + Environment.NewLine);
-					if (saplingsMatured > 0)
-						output.Append(String.Format(EventDescriptions.SapplingsMatured, saplingsMatured) + Environment.NewLine);
-					if (treesMatured > 0)
-						output.Append(String.Format(EventDescriptions.TreesMatured, treesMatured) + Environment.NewLine);
-					if (lumberHarvested > 0)
-						output.Append(String.Format(EventDescriptions.LumberHarvested, lumberHarvested) + Environment.NewLine);
-					if (lumberjacksMawled > 0)
-						output.Append(String.Format(EventDescriptions.LumberjacksMawled, lumberjacksMawled) + Environment.NewLine);
-					if (lumberjacksHired > 0)
-						output.Append(String.Format(EventDescriptions.LumberjackHired, lumberjacksHired) + Environment.NewLine);
-					if (lumberjacksFired > 0)
-						output.Append(String.Format(EventDescriptions.LumberjackFired, lumberjacksFired) + Environment.NewLine);
-					if (bearsProduced > 0)
-						output.Append(String.Format(EventDescriptions.BearsProduced, bearsProduced) + Environment.NewLine);
-					if (bearsTrapped > 0)
-						output.Append(String.Format(EventDescriptions.BearsTrapped, bearsTrapped) + Environment.NewLine);
-					return output.ToString();
-				}
+				if (SaplingsSpawned <= 0 && SaplingsMatured <= 0 && TreesMatured <= 0 && LumberHarvested <= 0 && LumberjacksMawled <= 0
+					&& LumberjacksHired <= 0 && LumberjacksFired <= 0 && BearsProduced <= 0 && BearsTrapped <= 0)
+					return "No events to report." + Environment.NewLine;
 
-				return "No events to report." + Environment.NewLine;
+				var output = new StringBuilder();
+				if (SaplingsSpawned > 0)
+					output.Append(String.Format(EventDescriptions.SapplingsSpawned, SaplingsSpawned) + Environment.NewLine);
+				if (SaplingsMatured > 0)
+					output.Append(String.Format(EventDescriptions.SapplingsMatured, SaplingsMatured) + Environment.NewLine);
+				if (TreesMatured > 0)
+					output.Append(String.Format(EventDescriptions.TreesMatured, TreesMatured) + Environment.NewLine);
+				if (LumberHarvested > 0)
+					output.Append(String.Format(EventDescriptions.LumberHarvested, LumberHarvested) + Environment.NewLine);
+				if (LumberjacksMawled > 0)
+					output.Append(String.Format(EventDescriptions.LumberjacksMawled, LumberjacksMawled) + Environment.NewLine);
+				if (LumberjacksHired > 0)
+					output.Append(String.Format(EventDescriptions.LumberjackHired, LumberjacksHired) + Environment.NewLine);
+				if (LumberjacksFired > 0)
+					output.Append(String.Format(EventDescriptions.LumberjackFired, LumberjacksFired) + Environment.NewLine);
+				if (BearsProduced > 0)
+					output.Append(String.Format(EventDescriptions.BearsProduced, BearsProduced) + Environment.NewLine);
+				if (BearsTrapped > 0)
+					output.Append(String.Format(EventDescriptions.BearsTrapped, BearsTrapped) + Environment.NewLine);
+				return output.ToString();
 			}
 		}
 	}
