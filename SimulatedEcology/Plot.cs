@@ -1,7 +1,5 @@
 ﻿namespace SimulatedEcology
 {
-	using System;
-
 	public class Plot
 	{
 		public Coordinate Coordinate { get; private set; }
